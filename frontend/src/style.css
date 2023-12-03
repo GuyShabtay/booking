@@ -1,0 +1,212 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+:root{
+  --primary-color:#C7DCA7;
+  --secondary-color:rgb(103, 106, 213);
+  --max-width:1100px;
+}
+
+td button {
+  width: 40px; /* Set your desired width */
+  height: 40px; /* Set your desired height */
+  padding: 10px; /* Set your desired padding */
+  margin: 5px; /* Optional: Set margin for additional spacing */
+  border: none; /* Optional: Remove border for a cleaner look */
+  background-color: rgba(196, 196, 196, 0.254);
+  border-radius: 50%;
+  cursor: pointer;
+}
+td button:focus,#schedule:focus {
+  background-color: var(--primary-color); /* Set your desired background color for selected dates */
+  color: white; /* Set your desired text color for selected dates */
+}
+
+
+section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+section#date-selector{
+  color: var(--primary-color);
+  padding-top: 100px;
+}
+.months-navigation{
+  display: flex;
+}
+.months-arrow{
+  cursor: pointer;
+  background-color: transparent;
+  border:none;
+  font-size: 30px;
+  margin: 0 5px;
+color: var(--primary-color);
+}
+
+
+
+
+
+
+section#hourSelector h1{
+  color: #89B9AD;
+  font-size: 30px;
+}
+section#hourSelector{
+  color:black;
+}
+
+.hours-container button {
+  padding: 10px 15px; /* Set your desired padding */
+  margin: 5px; /* Optional: Set margin for additional spacing */
+  border: none; /* Optional: Remove border for a cleaner look */
+  background-color: rgba(196, 196, 196, 0.254);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.hours-container button:focus {
+  background-color: #89B9AD; /* Set your desired background color for selected dates */
+  color: white; /* Set your desired text color for selected dates */
+}
+.hours-container {
+  margin: 30px 40px; /* Optional: Set margin for additional spacing */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+ #back{
+  align-self: self-start;
+  cursor: pointer;
+  background-color: transparent;
+  border:none;
+  font-size: 20px;
+  padding: 10px 0;
+}
+ #back i{
+  margin:5px;
+}
+
+
+
+
+
+section#summary h1{
+  color: #FFC5C5;
+  font-size: 30px;
+
+}
+section#summary{
+  color: black;
+  font-size: 20px;
+
+}
+section#summary #summary-confirm {
+  padding: 10px 15px;
+    font-size: 20px;
+
+  
+}
+section#summary #summary-confirm:focus {
+  background-color: #FFC5C5; /* Set your desired background color for selected dates */
+  color: white; /* Set your desired text color for selected dates */
+}
+
+
+
+section#approve-message{
+  /* color: #FFEBD8; */
+  padding-top: 20px;
+  color:black;
+    /* text-shadow: 2px 2px 2px rgba(0.3, 0.3, 0.3, 0.3);  */
+    font-size: 20px;
+}
+section#approve-message h1{
+  color: #6c6c6c;
+  font-size: 30px;
+    /* text-shadow: 2px 2px 2px rgba(0.3, 0.3, 0.3, 0.3);  */
+}
+section#approve-message i{
+  margin-bottom: 20px;
+}
+
+
+button {
+  
+  padding: 5px 10px; /* Set your desired padding */
+  margin: 15px; /* Optional: Set margin for additional spacing */
+  border: none; /* Optional: Remove border for a cleaner look */
+  background-color: rgba(196, 196, 196, 0.254);
+  border-radius: 8px;
+  cursor: pointer;
+}
+p{
+  padding: 3px;
+}
+
+#img-bg {
+  width: 100%;
+  height: 75vh;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  color: white;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to top, rgba(137, 185, 173, 0), #C7DCA7);
+  font-size: 20px;
+
+}
+
+#schedule{
+  padding: 20px 30px;
+  font-size: 30px;
+}
+
+
+/* section#front-page{
+  border:#6c6c6c 3px solid;
+} */
+
+/* body{
+  background: url(./bg.jpg);
+  border:blue 3px solid;
+  width: 100vw;
+  height: 50vh;
+} */
+/* #background{
+  width: 100vw;
+  height: 50vh;
+} */
+#bg{
+  width:100%;
+  height: auto;
+  bottom:0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+}
+
+#personal-img{
+  width:200px;
+  height: auto;
+  border-radius: 35px;
+  margin-bottom: 40px;
+  margin-top: 75px;
+}
+
+
+
+
+
+
+
+
