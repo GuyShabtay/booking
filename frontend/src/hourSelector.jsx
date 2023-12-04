@@ -10,17 +10,21 @@ import axios from 'axios';
 const HourSelector = ({ selectedDate, onBack,setProgress }) => {
   const [showSummary, setShowSummary] = useState(false);
   const [selectedHour, setSelectedHour] = useState(null);
-  const [hours, setHours] = useState([]);
+  const [day, setDay] = useState({ availableHours: [] });
 
   const formattedDate = format(selectedDate, 'dd/MM/yy', { locale: he });
   const dayNameInHebrew = format(selectedDate, 'EEEE', { locale: he });
 
   useEffect(() => {
-    const fetchHours=async()=>{
-      const {data}=await axios.get('/api/hours');
-      setHours(data);
+    const fetchDay = async () => {
+      const { data } = await axios.get(`/api/days`);  
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].date === formattedDate) {
+          setDay(data[i]);
+        }
+      }
     };
-    fetchHours();
+    fetchDay();
   }, []);
 
   const handleTimeButtonClick = (hour) => {
@@ -45,17 +49,19 @@ const HourSelector = ({ selectedDate, onBack,setProgress }) => {
         <h1>בחירת שעה</h1>
           <p>({dayNameInHebrew}) {formattedDate}</p>
           <div className='hours-container'>
-          {hours.map((time) => (
-            <button key={time._id} onClick={() => handleTimeButtonClick(time)}>
-              {time.time}
-            </button>
-          ))}
+          {day.availableHours.length > 0 ? (
+            day.availableHours.map((hour) => (
+              <div key={hour}>
+                <button onClick={() => handleTimeButtonClick(hour)}>
+                  {hour}
+                </button>
+              </div>
+            ))
+          ) : (
+            <h3>עדיין לא נקבעו שיעורים ליום זה</h3>
+          )}
         </div>
         
-
-         
-
-          {/* Add additional content for the selected date component */}
         </>
       )}
     </section>

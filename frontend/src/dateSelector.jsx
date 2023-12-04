@@ -1,20 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import HourSelector from './hourSelector';
+import axios from 'axios';
+import { format } from 'date-fns';
+import { he } from 'date-fns/locale';
+
 
 const DateSelector = ({ setProgress }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [showHourSelector, setShowHourSelector] = useState(false);
+  const [availableDays, setAvailableDays] = useState([]);
+
+
 
  
   const daysInMonth = (date) => new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  
+  useEffect(() => {
+    const fetchDays = async () => {
+      const { data } = await axios.get(`/api/days`);
+      const daysWithAvailableHours = data.filter(day => day.availableHours.length > 0);
+      const availableDaysArray = daysWithAvailableHours.map(day => day.date);
+      setAvailableDays(availableDaysArray);
+
+    };
+
+    fetchDays();
+  }, []);
 
   const generateDates = () => {
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const startingDayIndex = firstDay.getDay(); // 0 for Sunday, 1 for Monday, etc.
     const totalDays = daysInMonth(currentDate);
     const dates = [];
+
+    
 
     // Add empty cells for days before the start of the month
     for (let i = 0; i < startingDayIndex; i++) {
@@ -55,6 +76,9 @@ const DateSelector = ({ setProgress }) => {
     console.log('Month changed:', currentDate.toLocaleString('default', { month: 'long' }));
   }, [currentDate]);
 
+  const dateToString = (date) => {
+    return format(date, 'dd/MM/yy', { locale: he }) };
+
   return (
     <section id='date-selector'>
     {showHourSelector ? (
@@ -89,12 +113,15 @@ const DateSelector = ({ setProgress }) => {
             <tr key={rowIndex}>
               {week.map((date, colIndex) => (
                 <td key={colIndex}>
-                  {date && (
-                    <button
-                    onClick={() => handleDateClick(date)}>
-                      {date.getDate()}
-                    </button>
-                  )}
+                {date && (
+                  <button
+                    onClick={() => handleDateClick(date)}
+                    className={availableDays.includes(dateToString(date)) ? 'available-day' : ''}
+                  >
+                    {date.getDate()}
+                  </button>
+                )}
+                
                 </td>
               ))}
             </tr>

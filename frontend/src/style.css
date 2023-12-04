@@ -203,6 +203,11 @@ p{
   margin-top: 75px;
 }
 
+.available-day{
+  background-color: var(--primary-color) ;
+  color: white ;
+}
+
 
 
 
